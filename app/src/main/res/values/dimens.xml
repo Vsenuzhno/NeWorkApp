@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_min">8dp</dimen>
+    <dimen name="margin_default">16dp</dimen>
+    <dimen name="padding_default">16dp</dimen>
+    <dimen name="padding_button">12dp</dimen>
+    <dimen name="margin_start_like">28dp</dimen>
+    <dimen name="size_card_avatar">48dp</dimen>
+    <dimen name="margin_between_cards">4dp</dimen>
+    <dimen name="card_corner_radius_default">8dp</dimen>
+    <dimen name="padding_button_date">8dp</dimen>
+    <dimen name="margin_authorisation_page">24dp</dimen>
+    <dimen name="margin_dialog_edge">24dp</dimen>
+</resources>

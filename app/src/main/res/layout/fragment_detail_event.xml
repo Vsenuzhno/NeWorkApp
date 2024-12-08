@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.DetailEventFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        style="@style/Widget.Material3.AppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/detail_content_menu"
+        app:navigationIcon="@drawable/ic_arrow_back_24"
+        app:navigationIconTint="?attr/colorControlNormal"
+        app:title="@string/event" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/author_avatar"
+                android:layout_width="@dimen/size_card_avatar"
+                android:layout_height="@dimen/size_card_avatar"
+                android:layout_margin="@dimen/margin_default"
+                android:contentDescription="@string/author_avatar_image"
+                android:src="@drawable/ic_account_circle_24"
+                app:layout_constraintBottom_toTopOf="@id/barrier_top"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/author_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_min"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/last_work"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/author_avatar"
+                app:layout_constraintTop_toTopOf="@id/author_avatar"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="@sample/posts.json/data/author" />
+
+            <TextView
+                android:id="@+id/last_work"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/author_avatar"
+                app:layout_constraintStart_toStartOf="@id/author_name"
+                app:layout_constraintTop_toBottomOf="@id/author_name"
+                tools:text="Преподаватель" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="author_avatar,last_work" />
+
+            <LinearLayout
+                android:id="@+id/linear_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/barrier_top">
+
+                <ImageView
+                    android:id="@+id/image_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/image_content"
+                    android:maxHeight="196dp"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone"
+                    tools:src="@sample/images"
+                    tools:visibility="visible" />
+
+                <androidx.media3.ui.PlayerView
+                    android:id="@+id/video_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:visibility="gone"
+                    tools:visibility="gone" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/event_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                android:textColor="@color/md_theme_onSurface_highContrast"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear_content"
+                tools:text="Online" />
+
+            <TextView
+                android:id="@+id/event_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/margin_min"
+                app:layout_constraintStart_toStartOf="@id/event_type"
+                app:layout_constraintTop_toBottomOf="@id/event_type"
+                tools:text="@sample/posts.json/data/published" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_play_event"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:contentDescription="@string/button_play_event"
+                android:visibility="gone"
+                app:backgroundTint="@color/md_theme_onSurface_highContrast"
+                app:icon="@drawable/ic_play_arrow_24"
+                app:layout_constraintBottom_toBottomOf="@id/event_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/event_type"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/text_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:padding="@dimen/padding_default"
+                app:layout_constraintTop_toBottomOf="@id/event_date"
+                tools:layout_editor_absoluteX="0dp"
+                tools:text="@sample/posts.json/data/content" />
+
+            <LinearLayout
+                android:id="@+id/speakers_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/padding_default"
+                app:layout_constraintTop_toBottomOf="@id/text_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_min"
+                    android:text="@string/speakers"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_speakers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/card_avatar" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/likers_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                android:text="@string/likers"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/speakers_group" />
+
+            <LinearLayout
+                android:id="@+id/likers_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/likers_header">
+
+                <CheckBox
+                    android:id="@+id/button_like"
+                    style="@style/Widget.Material3.CheckedTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start_like"
+                    android:button="@drawable/selector_like_24"
+                    android:clickable="false"
+                    android:contentDescription="@string/button_like"
+                    android:padding="@dimen/padding_button"
+                    android:textColor="@color/md_theme_primary"
+                    app:buttonTint="@color/md_theme_primary"
+                    tools:text="@sample/posts.json/data/likes" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_likers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/margin_min"
+                    android:orientation="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/card_avatar" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/participants_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                android:text="@string/participants"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/likers_group" />
+
+            <LinearLayout
+                android:id="@+id/participants_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/participants_header">
+
+                <CheckBox
+                    android:id="@+id/button_users"
+                    style="@style/Widget.Material3.CheckedTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start_like"
+                    android:button="@drawable/selector_users_24"
+                    android:clickable="false"
+                    android:contentDescription="@string/button_users"
+                    android:padding="@dimen/padding_button"
+                    android:textColor="@color/md_theme_primary"
+                    app:buttonTint="@color/md_theme_primary"
+                    tools:text="@sample/posts.json/data/views" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_participant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/margin_min"
+                    android:orientation="horizontal"
+                    app:layoutManager="LinearLayoutManager"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/card_avatar" />
+
+            </LinearLayout>
+
+            <com.yandex.mapkit.mapview.MapView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:paddingBottom="@dimen/padding_default"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/participants_group"
+                tools:layout_editor_absoluteX="-8dp"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>
